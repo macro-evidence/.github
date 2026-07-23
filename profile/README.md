@@ -37,10 +37,11 @@ Foundation established. Flagship platform under active development. Public site:
 
 ### Get involved
 
-- **Issues & ideas** — open on the relevant repository once it's public here.
+- **Issues & ideas** — open an issue in the relevant repository.
 - **Security reports** — see [SECURITY.md](https://github.com/macro-evidence/.github/blob/main/SECURITY.md). Please don't file public issues for vulnerabilities.
-- **Sponsorship & collaboration** — [hello@macro-evidence.com](mailto:hello@macro-evidence.com).
-
+- **General inquiries & collaboration** — [hello@macro-evidence.com](mailto:hello@macro-evidence.com).
+- **Sponsorships & billing** — [billing@macro-evidence.com](mailto:billing@macro-evidence.com).
+  
 ---
 
 <p align="center"><sub>© 2026 Macro Evidence. All rights reserved.</sub></p>
