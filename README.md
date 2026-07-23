@@ -8,7 +8,7 @@ Any repository in this organization that does not define its own copy of one of 
 
 | File | Purpose |
 |---|---|
-| `profile/README.md` | Rendered on the organization's public Overview page |
+| `profile/README.md` | Rendered as the organization's public profile README |
 | `CODE_OF_CONDUCT.md` | Contributor Covenant 2.1, adapted |
 | `CONTRIBUTING.md` | How issues and PRs are handled at this stage |
 | `SECURITY.md` | Vulnerability reporting |
