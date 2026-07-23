@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Macro Evidence projects, including Macro Data Observatory, are pre-v1.0 and do not yet have a formal release or long-term support policy. Security reports are welcome against the default branch (`main`) of any repository in this organization.
+Macro Evidence projects, including Macro Data Observatory, are pre-v1.0 and do not yet have a formal release or long-term support policy. Security reports are accepted for the default (`main`) branch of any repository in this organization.
 
 | Version | Supported |
 |---|---|
@@ -10,12 +10,12 @@ Macro Evidence projects, including Macro Data Observatory, are pre-v1.0 and do n
 
 ## Reporting a vulnerability
 
-**Do not open a public issue for a security vulnerability.**
+**Do not open a public issue for security vulnerabilities.**
 
 Report it privately using one of the following:
 
 1. **GitHub Private Vulnerability Reporting** — if enabled on the affected repository, use "Report a vulnerability" under that repository's Security tab.
-2. **Email** — hello@macro-evidence.com. Include the affected repository, a description of the issue, and reproduction steps if possible.
+2. **Email** — [security@macro-evidence.com](mailto:security@macro-evidence.com). Include the affected repository, a description of the issue, and reproduction steps if possible.
 
 ## What to expect
 
