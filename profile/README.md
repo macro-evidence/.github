@@ -23,7 +23,7 @@ The organization does not produce commentary or opinion. It builds the engineeri
 
 ### Flagship platform
 
-**Macro Data Observatory (MDO)** — a data engineering platform that ingests, validates, and structures macroeconomic data from authoritative public sources (World Bank, IMF, FRED), built on Python, PostgreSQL, and Pandas. In active development; repository is available in this organization.
+**Macro Data Observatory (MDO)** — a data engineering platform that ingests, validates, and structures macroeconomic data from authoritative public sources (World Bank, IMF, FRED), built on Python, PostgreSQL, and Pandas. Development is active. Explore the project: [macro-data-observatory](https://github.com/macro-evidence/macro-data-observatory).
 
 ### How this organization works
 
