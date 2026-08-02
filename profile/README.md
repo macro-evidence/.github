@@ -1,10 +1,6 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/macro-evidence/.github/main/assets/logo.png" width="96" alt="Macro Evidence logo">
-</p>
-
 <h1 align="center">Macro Evidence</h1>
 
-<p align="center"><em>Building Evidence for Better Decisions</em></p>
+<p align="center"><em>Foundational Evidence for High-Stakes Decisions.</em></p>
 
 <p align="center">
   <a href="https://macro-evidence.com">Website</a> ·
@@ -17,9 +13,9 @@
 
 ### About
 
-Macro Evidence builds open data infrastructure for macroeconomic and financial evidence — data engineering, analytics, and AI, applied to publicly available economic data.
+Macro Evidence engineers the open software and data infrastructure required for high-stakes economic and financial decisions. We build automated data pipelines, validated analytical engines, and institutional-grade datasets that convert raw, fragmented public data into verifiable truth.
 
-The organization does not produce commentary or opinion. It builds the engineering systems — ingestion pipelines, validated datasets, reproducible infrastructure — that make macroeconomic evidence easier to collect, verify, and use.
+Operating strictly without narrative, policy commentary, or speculative bias, Macro Evidence provides the computational bedrock that enables institutions and decision-makers to operate with absolute clarity.
 
 ### Flagship platform
 
