@@ -37,4 +37,4 @@ Platform repositories are built on Python, PostgreSQL, and Pandas, using free an
 
 ## Questions
 
-Open an issue, or reach the maintainer directly at hello@macro-evidence.com.
+Open an issue, or reach the maintainer directly at [siddharth.chauhan@macro-evidence.com](mailto:siddharth.chauhan@macro-evidence.com).
