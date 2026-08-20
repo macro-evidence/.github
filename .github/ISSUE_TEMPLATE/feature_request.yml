@@ -1,34 +1,52 @@
 name: Feature request
-description: Suggest an idea or enhancement.
+description: Propose an improvement or new capability.
 title: "[Feature]: "
 labels: ["enhancement"]
+type: feature
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for the suggestion. Given the current single-maintainer stage, please open an issue before submitting a large pull request for this.
-  - type: input
-    id: repository
-    attributes:
-      label: Affected repository
-      placeholder: e.g. macro-data-observatory
-    validations:
-      required: true
+        Thanks for the proposal. Please focus on the problem, expected outcome, and evidence that the change is useful now. For substantial implementation work, discuss the scope here before investing significant time in a pull request.
+
   - type: textarea
     id: problem
     attributes:
-      label: What problem does this solve?
+      label: Problem or use case
+      description: What current problem, limitation, or user need should be addressed?
     validations:
       required: true
+
   - type: textarea
     id: proposal
     attributes:
-      label: Proposed solution
+      label: Proposed outcome
+      description: Describe the behavior or result you would like. Implementation details are optional.
     validations:
       required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Why is this useful now?
+      description: Provide examples, current limitations, or other evidence that helps establish the need and scope.
+    validations:
+      required: false
+
   - type: textarea
     id: alternatives
     attributes:
       label: Alternatives considered
+      description: Note any workarounds or simpler approaches you considered.
     validations:
       required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues for a duplicate or closely related proposal.
+          required: true
+        - label: I agree to follow the [Code of Conduct](https://github.com/macro-evidence/.github/blob/main/CODE_OF_CONDUCT.md).
+          required: true

@@ -1,57 +1,70 @@
 name: Bug report
-description: Report something that isn't working as expected.
+description: Report something that is not working as expected.
 title: "[Bug]: "
-labels: ["bug", "triage"]
+labels: ["bug"]
+type: bug
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to report this. Please check existing issues first to avoid duplicates.
-  - type: input
-    id: repository
-    attributes:
-      label: Affected repository
-      description: Which repository does this affect?
-      placeholder: e.g. macro-data-observatory
-    validations:
-      required: true
+        Thanks for taking the time to report a problem. Search existing issues first to avoid duplicates.
+
+        If this may be a security vulnerability, do not file a public issue. Follow the affected repository's security policy; if it does not publish one, use the organization-wide Security Policy: https://github.com/macro-evidence/.github/blob/main/SECURITY.md
+
   - type: textarea
     id: what-happened
     attributes:
       label: What happened?
-      description: A clear description of the bug.
+      description: Describe the observed behavior and why it appears incorrect.
     validations:
       required: true
+
   - type: textarea
     id: expected
     attributes:
       label: Expected behavior
+      description: Describe what you expected to happen instead.
     validations:
       required: true
+
   - type: textarea
-    id: repro
+    id: reproduction
     attributes:
       label: Steps to reproduce
-      value: |
-        1.
-        2.
-        3.
+      description: Provide the smallest reliable sequence you know. If the problem is intermittent, describe when it occurs.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
     validations:
-      required: false
+      required: true
+
   - type: textarea
     id: environment
     attributes:
       label: Environment
-      description: OS, Python version, and any relevant package versions.
+      description: Include only details relevant to reproducing the issue, such as OS, runtime or browser, package/application version, and configuration.
       placeholder: |
         - OS:
-        - Python:
+        - Runtime or browser:
+        - Version or commit:
     validations:
       required: false
-  - type: checkboxes
-    id: terms
+
+  - type: textarea
+    id: additional-context
     attributes:
-      label: Code of Conduct
+      label: Additional context
+      description: Add logs, screenshots, links, or other details that may help. Remove secrets and unrelated personal data before posting.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
       options:
-        - label: I agree to follow this project's Code of Conduct (https://github.com/macro-evidence/.github/blob/main/CODE_OF_CONDUCT.md)
+        - label: I searched the existing issues for a duplicate.
+          required: true
+        - label: I agree to follow the [Code of Conduct](https://github.com/macro-evidence/.github/blob/main/CODE_OF_CONDUCT.md).
           required: true
