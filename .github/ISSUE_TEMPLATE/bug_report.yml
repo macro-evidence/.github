@@ -9,7 +9,7 @@ body:
       value: |
         Thanks for taking the time to report a problem. Search existing issues first to avoid duplicates.
 
-        If this may be a security vulnerability, do not file a public issue. Follow the affected repository's security policy; if it does not publish one, use the organization-wide Security Policy: https://github.com/macro-evidence/.github/blob/main/SECURITY.md
+        If this may be a security vulnerability, do not file a public issue. Follow the affected repository's security policy; if it does not publish one, use the organization-wide [Security Policy](https://github.com/macro-evidence/.github/blob/main/SECURITY.md).
 
   - type: textarea
     id: what-happened
