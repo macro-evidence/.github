@@ -1,6 +1,6 @@
 ## About
 
-Macro Evidence develops open macroeconomic data infrastructure around provenance, validation, reproducibility, and transparency. The organization is designed around one coherent, extensible data foundation rather than a collection of disconnected data systems.
+Macro Evidence is a software organization building open macroeconomic data infrastructure. It applies explicit engineering requirements — provenance, validation, reproducibility, maintainability, and transparent limitations — to make macroeconomic data more coherent, traceable, and researchable.
 
 ## Macro Data Observatory
 
