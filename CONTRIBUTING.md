@@ -1,40 +1,42 @@
 # Contributing to Macro Evidence
 
-Thanks for your interest. This guide applies to every repository in the Macro Evidence organization unless a repository defines its own `CONTRIBUTING.md`.
+Thank you for your interest in contributing. This file is the organization-wide default for Macro Evidence repositories unless a repository publishes its own `CONTRIBUTING.md`.
 
-## Current state
-
-Macro Evidence is built and maintained by a single developer. There is no team yet, no formal review board, and no guaranteed response time on issues or pull requests. Treat this as an early-stage, solo-maintained project rather than one with an established maintainer team — that will change as the organization grows.
+Macro Evidence currently has one maintainer. Issues and pull requests are reviewed as capacity allows, and no response-time SLA is provided.
 
 ## Before opening an issue
 
-- Search existing issues first — duplicates slow things down more than they help.
-- For bugs: state what you expected, what happened instead, and how to reproduce it.
-- For security vulnerabilities: **do not open a public issue.** See [SECURITY.md](SECURITY.md).
+1. Use the repository that is directly affected by the bug, request, or documentation problem.
+2. Search existing issues before opening a new one.
+3. Use the repository's issue form when one is available and provide enough context to make the report actionable.
+4. For a security vulnerability, **do not open a public issue**. Follow the affected repository's security policy; the organization-wide default is [`SECURITY.md`](https://github.com/macro-evidence/.github/blob/main/SECURITY.md).
 
 ## Before opening a pull request
 
-Given the current single-maintainer stage, unsolicited large pull requests are unlikely to be reviewed quickly, if at all. Open an issue first to discuss the change before investing significant time in it.
+Small, self-contained fixes may be submitted directly. Before investing significant time in a large change, new dependency, architectural change, or change to a public interface, open an issue in the affected repository so the scope can be discussed first.
 
-Small, self-contained pull requests — typos, broken links, a clear bug with an obvious fix — are welcome directly.
+A pull request should:
 
-## Engineering standards
+- address one coherent change;
+- explain the problem and the chosen approach;
+- link the relevant issue or decision record when one exists;
+- include tests or other verification appropriate to the change;
+- update documentation when behavior, interfaces, setup, or user-facing guidance changes; and
+- avoid unrelated refactors or formatting churn.
 
-Repositories under this organization, starting with Macro Data Observatory, follow a documented set of engineering principles:
+Repository-specific setup, development commands, and verification procedures belong in that repository's own `README.md` or technical documentation.
 
-- **Necessity over novelty** — new tools, dependencies, and features are added only when they provide measurable value.
-- **Simplicity over unnecessary complexity.**
-- **Reproducibility** — environments and pipelines run on modest, free-tier hardware, without hidden or paid dependencies.
-- **Documentation-first** — architectural decisions and non-trivial changes are documented alongside the code, not after it.
+## Organization standards
 
-## Commit conventions
+Contributions are expected to follow the public standards that govern the affected repository:
 
-Commits follow [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`, followed by a concise, present-tense description.
+- [Organization & Platform Charter](https://github.com/macro-evidence/governance/blob/main/ORGANIZATION_CHARTER.md)
+- [Governance & Decision-Making Charter](https://github.com/macro-evidence/governance/blob/main/GOVERNANCE.md)
+- [Documentation Standards](https://github.com/macro-evidence/governance/blob/main/DOCUMENTATION_STANDARDS.md)
+- [Code of Conduct](https://github.com/macro-evidence/.github/blob/main/CODE_OF_CONDUCT.md)
 
-## Development environment
-
-Platform repositories are built on Python, PostgreSQL, and Pandas, using free and open-source tools only. Setup instructions specific to a given repository live in that repository's own README.
+Commits follow the convention defined in the [Documentation Standards](https://github.com/macro-evidence/governance/blob/main/DOCUMENTATION_STANDARDS.md#6-commit-conventions).
 
 ## Questions
 
-Open an issue, or reach the maintainer directly at [siddharth.chauhan@macro-evidence.com](mailto:siddharth.chauhan@macro-evidence.com).
+For questions about a repository, open an issue there when appropriate. For general inquiries or collaboration, contact [hello@macro-evidence.com](mailto:hello@macro-evidence.com).
