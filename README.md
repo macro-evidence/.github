@@ -31,6 +31,6 @@ Repository-specific setup, development, and usage documentation belongs in each 
 
 ## License
 
-Content in this repository is licensed under the [Creative Commons Attribution 4.0 International License](LICENSE) (CC BY 4.0).
+Content in this repository is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](LICENSE) (CC BY-SA 4.0).
 
 That license governs the repository content; it does not itself grant rights to use Macro Evidence's names, marks, or visual identity. See the separate [Trademarks Policy](https://github.com/macro-evidence/governance/blob/main/TRADEMARKS.md).
