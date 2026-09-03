@@ -27,7 +27,7 @@ This repository must remain public for GitHub to apply the supported defaults or
 
 ## Ownership
 
-Repository-specific setup, development, and usage documentation belongs in each repository's own `README.md`. Organization mission and platform scope, governance, documentation standards, and trademark policy are maintained in the [governance repository](https://github.com/macro-evidence/governance).
+Repository-specific setup, development, and usage documentation belongs in each repository's own `README.md`. Organization mission and platform scope, governance, documentation standards, contribution policy, and trademark policy are maintained in the [governance repository](https://github.com/macro-evidence/governance).
 
 ## License
 

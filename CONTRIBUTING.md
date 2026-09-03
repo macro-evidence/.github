@@ -26,6 +26,16 @@ A pull request should:
 
 Repository-specific setup, development commands, and verification procedures belong in that repository's own `README.md` or technical documentation.
 
+## Contribution acceptance and contributor rights
+
+Participation is open to the community, but submitting a contribution does not guarantee acceptance or merge. Macro Evidence evaluates substantive contributions on their merits, fit with current repository needs, evidence and verification, maintainability, security, licensing compatibility, governance alignment, and available review capacity.
+
+The organization-wide [Contribution Policy](https://github.com/macro-evidence/governance/blob/main/CONTRIBUTION_POLICY.md) defines the canonical participation, acceptance, and contributor-rights rules.
+
+External copyrightable contributions may be opened and reviewed before contributor-rights paperwork is complete, but they are not merged until the applicable contributor-agreement requirement is satisfied.
+
+Contribution is a non-monetary participation path. Monetary support is handled separately through Macro Evidence's sponsorship model and does not purchase technical authority, roadmap control, or preferential acceptance.
+
 ## Organization standards
 
 Contributions are expected to follow the public standards that govern the affected repository:
@@ -33,6 +43,7 @@ Contributions are expected to follow the public standards that govern the affect
 - [Organization & Platform Charter](https://github.com/macro-evidence/governance/blob/main/ORGANIZATION_CHARTER.md)
 - [Governance & Decision-Making Charter](https://github.com/macro-evidence/governance/blob/main/GOVERNANCE.md)
 - [Documentation Standards](https://github.com/macro-evidence/governance/blob/main/DOCUMENTATION_STANDARDS.md)
+- [Contribution Policy](https://github.com/macro-evidence/governance/blob/main/CONTRIBUTION_POLICY.md)
 - [Code of Conduct](https://github.com/macro-evidence/.github/blob/main/CODE_OF_CONDUCT.md)
 
 Commits follow the convention defined in the [Documentation Standards](https://github.com/macro-evidence/governance/blob/main/DOCUMENTATION_STANDARDS.md#6-commit-conventions).
