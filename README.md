@@ -13,7 +13,7 @@ See GitHub's documentation on [default community health files](https://docs.gith
 ## Contents
 
 | Path | Purpose |
-|---|---|
+| --- | --- |
 | `profile/README.md` | Public organization profile content |
 | `CODE_OF_CONDUCT.md` | Default contributor conduct policy |
 | `CONTRIBUTING.md` | Default contribution guidelines |
@@ -22,6 +22,8 @@ See GitHub's documentation on [default community health files](https://docs.gith
 | `.github/ISSUE_TEMPLATE/bug_report.yml` | Default bug-report issue form |
 | `.github/ISSUE_TEMPLATE/feature_request.yml` | Default feature-request issue form |
 | `.github/ISSUE_TEMPLATE/config.yml` | Default issue-template chooser configuration |
+| `.github/workflows/contributor-rights-coverage.yml` | Reusable contributor-rights coverage check used by covered repositories |
+| `LICENSING.md` | File-type licensing map for community content and executable automation |
 
 This repository must remain public for GitHub to apply the supported defaults organization-wide.
 
@@ -29,8 +31,18 @@ This repository must remain public for GitHub to apply the supported defaults or
 
 Repository-specific setup, development, and usage documentation belongs in each repository's own `README.md`. Organization mission and platform scope, governance, documentation standards, contribution policy, and trademark policy are maintained in the [governance repository](https://github.com/macro-evidence/governance).
 
-## License
+## Verification
 
-Content in this repository is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](LICENSE) (CC BY-SA 4.0).
+With Node.js 22 or later available, verify maintained Markdown with:
 
-That license governs the repository content; it does not itself grant rights to use Macro Evidence's names, marks, or visual identity. See the separate [Trademarks Policy](https://github.com/macro-evidence/governance/blob/main/TRADEMARKS.md).
+```text
+npx --yes markdownlint-cli@0.49.1 "**/*.md" --ignore-path .gitignore
+```
+
+The repository configuration uses the standard `markdownlint` rule set with line-length enforcement (`MD013`) disabled.
+
+## Licensing
+
+Community/profile content uses the repository's [Creative Commons Attribution-ShareAlike 4.0 International](LICENSE) (CC BY-SA 4.0) default. Executable first-party automation in `.github/workflows/` is licensed under Apache License 2.0. See [`LICENSING.md`](LICENSING.md) for the explicit boundary.
+
+Repository licensing does not itself grant rights to use Macro Evidence's names, marks, visual identity, or official status. See the separate [Trademarks Policy](https://github.com/macro-evidence/governance/blob/main/TRADEMARKS.md).
