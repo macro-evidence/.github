@@ -1,0 +1,255 @@
+# SPDX-License-Identifier: Apache-2.0
+name: Contributor rights coverage publisher
+
+on:
+  workflow_call:
+    inputs:
+      actor_id:
+        description: Immutable GitHub numeric account ID of the pull request author from trusted event metadata
+        required: true
+        type: string
+      actor_type:
+        description: GitHub actor type from trusted pull request user metadata
+        required: true
+        type: string
+      repository_id:
+        description: Immutable numeric ID of the base repository from trusted event metadata
+        required: true
+        type: string
+      pull_request_number:
+        description: Pull request number from trusted event metadata
+        required: true
+        type: string
+      head_sha:
+        description: Current pull request head commit from trusted event metadata
+        required: true
+        type: string
+      actor_coverage_entries:
+        description: Dated opaque HMAC entries (YYYY-MM-DD:token) from organization-controlled Actions configuration variables
+        required: false
+        default: ""
+        type: string
+      system_actor_entries:
+        description: Dated, repository-bound approved non-human system actors (YYYY-MM-DD:numeric-actor-id:numeric-repository-id) from trusted Actions configuration
+        required: false
+        default: ""
+        type: string
+      pr_exception_tokens:
+        description: Dated one-PR/one-head exception entries (YYYY-MM-DD:token) from organization-controlled Actions configuration variables
+        required: false
+        default: ""
+        type: string
+    secrets:
+      hmac_key:
+        description: Organization-controlled HMAC-SHA256 key; optional only for an exact approved system-actor match
+        required: false
+
+# The reusable workflow must publish a commit status on the PR head because a
+# pull_request_target run itself is associated with the trusted base context.
+# The caller must grant no broader GITHUB_TOKEN scope than statuses: write.
+permissions:
+  statuses: write
+
+jobs:
+  coverage:
+    name: Publish contributor rights coverage
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Verify coverage and publish head status
+        shell: bash
+        env:
+          ME_ACTOR_ID: ${{ inputs.actor_id }}
+          ME_ACTOR_TYPE: ${{ inputs.actor_type }}
+          ME_REPOSITORY_ID: ${{ inputs.repository_id }}
+          ME_EVENT_REPOSITORY_ID: ${{ github.repository_id }}
+          ME_PR_NUMBER: ${{ inputs.pull_request_number }}
+          ME_HEAD_SHA: ${{ inputs.head_sha }}
+          ME_ACTOR_ENTRIES: ${{ inputs.actor_coverage_entries }}
+          ME_SYSTEM_ACTOR_ENTRIES: ${{ inputs.system_actor_entries }}
+          ME_PR_EXCEPTION_TOKENS: ${{ inputs.pr_exception_tokens }}
+          ME_HMAC_KEY: ${{ secrets.hmac_key }}
+          ME_GITHUB_TOKEN: ${{ github.token }}
+          ME_GITHUB_API_URL: ${{ github.api_url }}
+          ME_GITHUB_REPOSITORY: ${{ github.repository }}
+          ME_GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import datetime
+          import hashlib
+          import hmac
+          import json
+          import os
+          import re
+          import sys
+          import urllib.error
+          import urllib.request
+
+          STATUS_CONTEXT = "Contributor rights coverage"
+
+          def fail(message: str) -> tuple[bool, str]:
+              return False, message
+
+          def split_config(name: str) -> list[str]:
+              value = os.environ.get(name, "").strip()
+              return [x for x in re.split(r"[\s,]+", value) if x] if value else []
+
+          def verify() -> tuple[bool, str]:
+              actor_id = os.environ["ME_ACTOR_ID"].strip()
+              actor_type = os.environ["ME_ACTOR_TYPE"].strip()
+              repository_id = os.environ["ME_REPOSITORY_ID"].strip()
+              event_repository_id = os.environ["ME_EVENT_REPOSITORY_ID"].strip()
+              pr_number = os.environ["ME_PR_NUMBER"].strip()
+              head_sha = os.environ["ME_HEAD_SHA"].strip().lower()
+
+              if not actor_id.isdigit() or not repository_id.isdigit() or not pr_number.isdigit():
+                  return fail("invalid trusted numeric event identifier")
+              if repository_id != event_repository_id:
+                  return fail("base repository ID did not match trusted caller context")
+              if not re.fullmatch(r"[0-9a-f]{40,64}", head_sha):
+                  return fail("invalid pull-request head commit")
+              if actor_type not in {"User", "Bot"}:
+                  return fail("unsupported pull-request actor type")
+
+              today = datetime.datetime.now(datetime.timezone.utc).date()
+              max_valid_through = today + datetime.timedelta(days=366)
+
+              system_entries = []
+              for item in split_config("ME_SYSTEM_ACTOR_ENTRIES"):
+                  match = re.fullmatch(r"(\d{4}-\d{2}-\d{2}):(\d+):(\d+)", item)
+                  if not match:
+                      return fail("malformed trusted system-actor configuration")
+                  try:
+                      valid_through = datetime.date.fromisoformat(match.group(1))
+                  except ValueError:
+                      return fail("invalid system-actor coverage date")
+                  if valid_through > max_valid_through:
+                      return fail("system-actor coverage exceeds maximum validity horizon")
+                  system_entries.append((valid_through, match.group(2), match.group(3)))
+
+              actor_entries = []
+              for item in split_config("ME_ACTOR_ENTRIES"):
+                  match = re.fullmatch(r"(\d{4}-\d{2}-\d{2}):([0-9a-fA-F]{64})", item)
+                  if not match:
+                      return fail("malformed trusted actor-coverage configuration")
+                  try:
+                      valid_through = datetime.date.fromisoformat(match.group(1))
+                  except ValueError:
+                      return fail("invalid actor-coverage date")
+                  if valid_through > max_valid_through:
+                      return fail("human actor coverage exceeds maximum validity horizon")
+                  actor_entries.append((valid_through, match.group(2).lower()))
+
+              pr_entries = []
+              for item in split_config("ME_PR_EXCEPTION_TOKENS"):
+                  match = re.fullmatch(r"(\d{4}-\d{2}-\d{2}):([0-9a-fA-F]{64})", item)
+                  if not match:
+                      return fail("malformed trusted PR-exception configuration")
+                  try:
+                      valid_through = datetime.date.fromisoformat(match.group(1))
+                  except ValueError:
+                      return fail("invalid PR-exception date")
+                  if valid_through > today + datetime.timedelta(days=90):
+                      return fail("PR exception exceeds maximum validity horizon")
+                  pr_entries.append((valid_through, match.group(2).lower()))
+
+              # Validate every configured coverage domain before authorizing any path.
+              # An approved system actor must not bypass malformed human or PR-exception
+              # configuration merely because its own entry matched first.
+              for valid_through, system_id, system_repository_id in system_entries:
+                  if actor_id == system_id and repository_id == system_repository_id:
+                      if actor_type != "Bot":
+                          return fail("approved system actor ID did not have Bot actor type")
+                      if today <= valid_through:
+                          return True, "approved system actor coverage verified"
+
+              key_text = os.environ.get("ME_HMAC_KEY", "")
+              if len(key_text.encode("utf-8")) < 32:
+                  return fail("HMAC key is missing or too short")
+              key = key_text.encode("utf-8")
+
+              def digest(payload: str) -> str:
+                  return hmac.new(key, payload.encode("utf-8"), hashlib.sha256).hexdigest()
+
+              if actor_type == "User":
+                  for valid_through, candidate in actor_entries:
+                      expected = digest(
+                          f"macro-evidence:contributor-rights:v1:actor:{actor_id}:{valid_through.isoformat()}"
+                      )
+                      if hmac.compare_digest(expected, candidate) and today <= valid_through:
+                          return True, "human actor coverage verified"
+
+              for valid_through, candidate in pr_entries:
+                  expected = digest(
+                      "macro-evidence:contributor-rights:v1:pr:"
+                      f"{repository_id}:{pr_number}:{head_sha}:{valid_through.isoformat()}"
+                  )
+                  if hmac.compare_digest(expected, candidate) and today <= valid_through:
+                      return True, "pull-request-specific coverage verified"
+
+              return fail("contributor-rights coverage not verified")
+
+          def publish(state: str, description: str) -> None:
+              token = os.environ.get("ME_GITHUB_TOKEN", "")
+              api_url = os.environ.get("ME_GITHUB_API_URL", "").rstrip("/")
+              repository = os.environ.get("ME_GITHUB_REPOSITORY", "")
+              head_sha = os.environ.get("ME_HEAD_SHA", "").strip().lower()
+              target_url = os.environ.get("ME_GITHUB_RUN_URL", "")
+
+              if not token or not api_url or not repository or not re.fullmatch(r"[0-9a-f]{40,64}", head_sha):
+                  raise RuntimeError("status publication prerequisites were unavailable")
+
+              payload = json.dumps({
+                  "state": state,
+                  "context": STATUS_CONTEXT,
+                  "description": description[:140],
+                  "target_url": target_url,
+              }).encode("utf-8")
+              request = urllib.request.Request(
+                  f"{api_url}/repos/{repository}/statuses/{head_sha}",
+                  data=payload,
+                  method="POST",
+                  headers={
+                      "Accept": "application/vnd.github+json",
+                      "Authorization": f"Bearer {token}",
+                      "X-GitHub-Api-Version": "2026-03-10",
+                      "Content-Type": "application/json",
+                  },
+              )
+              try:
+                  with urllib.request.urlopen(request, timeout=20) as response:
+                      if response.status != 201:
+                          raise RuntimeError(f"status publication returned HTTP {response.status}")
+              except urllib.error.HTTPError as exc:
+                  body = exc.read(2048).decode("utf-8", errors="replace")
+                  raise RuntimeError(f"status publication failed with HTTP {exc.code}: {body}") from exc
+
+          try:
+              covered, reason = verify()
+          except Exception as exc:
+              covered, reason = False, f"internal verification error: {type(exc).__name__}"
+
+          state = "success" if covered else "failure"
+          public_description = (
+              "Contributor-rights basis verified for this PR head."
+              if covered
+              else "Contributor-rights basis is not verified for this PR head."
+          )
+
+          try:
+              publish(state, public_description)
+          except Exception as exc:
+              print(f"Contributor-rights check failed closed: unable to publish required head status: {exc}")
+              sys.exit(1)
+
+          if covered:
+              print(f"Contributor rights coverage verified: {reason}.")
+              sys.exit(0)
+
+          print(
+              "Contributor rights coverage not verified. Complete the Macro Evidence "
+              "contributor-rights process before this pull request can be merged."
+          )
+          print(f"Internal gate reason: {reason}.")
+          sys.exit(1)
+          PY
