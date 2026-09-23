@@ -22,6 +22,6 @@ Do not send credentials, private keys, access tokens, or other live secrets. If 
 
 ## Response and disclosure
 
-Reports are reviewed on a best-effort basis. There is no guaranteed acknowledgement or remediation SLA at the current maintainer capacity.
+Reports are reviewed on a best-effort basis. There is no guaranteed acknowledgement or remediation SLA.
 
 Please allow a reasonable period for investigation and remediation before public disclosure. When useful, Macro Evidence will coordinate with the reporter on disclosure timing and may credit the reporter in the eventual advisory or fix unless anonymity is requested.
