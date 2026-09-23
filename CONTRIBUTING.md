@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing. This file is the organization-wide default for Macro Evidence repositories unless a repository publishes its own `CONTRIBUTING.md`.
 
-Macro Evidence currently has one maintainer. Issues and pull requests are reviewed as capacity allows, and no response-time SLA is provided.
+Issues and pull requests are reviewed as capacity allows, and no response-time SLA is provided.
 
 ## Before opening an issue
 
@@ -32,9 +32,11 @@ Participation is open to the community, but submitting a contribution does not g
 
 The organization-wide [Contribution Policy](https://github.com/macro-evidence/governance/blob/main/CONTRIBUTION_POLICY.md) defines the canonical participation, acceptance, and contributor-rights rules.
 
-External copyrightable contributions may be opened and reviewed before contributor-rights paperwork is complete, but they are not merged until the applicable contributor-agreement requirement is satisfied.
+External copyrightable contributions may be opened and reviewed before contributor-rights execution is complete, but they are not merged until the applicable contributor-rights coverage is active. The canonical public process is maintained in the [Governance contributor-agreement documentation](https://github.com/macro-evidence/governance/tree/main/legal/cla).
 
-Contribution is a non-monetary participation path. Monetary support is handled separately through Macro Evidence's sponsorship model and does not purchase technical authority, roadmap control, or preferential acceptance.
+Where the contributor-rights system is active for a repository, a required **Contributor rights coverage** commit status on the current pull-request head enforces that merge gate automatically. The status check does not replace the signed agreement, prove authorship or provenance, or expose the private agreement record. Persistent human actor-level clearance is tied to an immutable GitHub numeric account ID, carries an automatic validity deadline, and is periodically revalidated. Explicitly approved non-human system actors require a dated exact numeric actor ID, exact repository ID, GitHub bot identity, and a separately documented rights basis; their automated coverage also expires. Rare case-specific exceptions are bound to one pull request, head commit, and short expiry rather than becoming reusable bypasses.
+
+Material requested for merge must be intentionally submitted as a Contribution under the applicable contributor-rights process. Material designated `Not a Contribution` when originally sent is excluded from that Submission and must be deliberately re-submitted for inclusion before it becomes merge-eligible; a later label does not retroactively withdraw an earlier qualifying Submission. Contribution is a non-monetary participation path. Monetary support is handled separately through Macro Evidence's sponsorship model and does not purchase technical authority, roadmap control, or preferential acceptance.
 
 ## Organization standards
 
@@ -46,8 +48,8 @@ Contributions are expected to follow the public standards that govern the affect
 - [Contribution Policy](https://github.com/macro-evidence/governance/blob/main/CONTRIBUTION_POLICY.md)
 - [Code of Conduct](https://github.com/macro-evidence/.github/blob/main/CODE_OF_CONDUCT.md)
 
-Commits follow the convention defined in the [Documentation Standards](https://github.com/macro-evidence/governance/blob/main/DOCUMENTATION_STANDARDS.md#6-commit-conventions).
+Commits follow the convention defined in the [Documentation Standards](https://github.com/macro-evidence/governance/blob/main/DOCUMENTATION_STANDARDS.md#9-commit-conventions).
 
 ## Questions
 
-For questions about a repository, open an issue there when appropriate. For general inquiries or collaboration, contact [hello@macro-evidence.com](mailto:hello@macro-evidence.com).
+For questions about a repository, open an issue there when appropriate. For general inquiries or collaboration, contact [hello@macro-evidence.com](mailto:hello@macro-evidence.com). For contributor-agreement execution, entity authority, or legal-record administration, use [legal@macro-evidence.com](mailto:legal@macro-evidence.com).
