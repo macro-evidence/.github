@@ -1,3 +1,5 @@
+<!-- markdownlint-disable-file MD041 -->
+<!-- MD041 exception: GitHub renders this organization profile README inside a profile page that supplies its surrounding page context; the visible document intentionally begins with an h2. -->
 ## About
 
 Macro Evidence is a software organization building open macroeconomic data infrastructure. It applies explicit engineering requirements — provenance, validation, reproducibility, maintainability, and transparent limitations — to make macroeconomic data more coherent, traceable, and researchable.
