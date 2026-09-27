@@ -1,0 +1,25 @@
+name: Contributor rights coverage (caller)
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  statuses: write
+
+jobs:
+  publish-coverage:
+    permissions:
+      statuses: write
+    uses: macro-evidence/.github/.github/workflows/contributor-rights-coverage.yml@e2538ed197c0464ff9e71b30eb36e58463b1561c
+    with:
+      actor_id: ${{ github.event.pull_request.user.id }}
+      actor_type: ${{ github.event.pull_request.user.type }}
+      repository_id: ${{ github.repository_id }}
+      pull_request_number: ${{ github.event.pull_request.number }}
+      head_sha: ${{ github.event.pull_request.head.sha }}
+      actor_coverage_entries: ${{ vars.CONTRIBUTOR_RIGHTS_ACTOR_ENTRIES }}
+      system_actor_entries: ${{ vars.CONTRIBUTOR_RIGHTS_SYSTEM_ACTOR_ENTRIES }}
+      pr_exception_tokens: ${{ vars.CONTRIBUTOR_RIGHTS_PR_EXCEPTION_TOKENS }}
+    secrets:
+      hmac_key: ${{ secrets.CONTRIBUTOR_RIGHTS_HMAC_KEY }}
