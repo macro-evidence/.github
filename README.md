@@ -19,12 +19,13 @@ See GitHub's documentation on [default community health files](https://docs.gith
 | `CONTRIBUTING.md` | Default contribution guidelines |
 | `SECURITY.md` | Default vulnerability-reporting policy |
 | `PULL_REQUEST_TEMPLATE.md` | Default pull request template |
+| `LICENSING.md` | File-type licensing map for community content and executable automation |
+| `.github/FUNDING.yml` | Default GitHub Sponsors button configuration |
 | `.github/ISSUE_TEMPLATE/bug_report.yml` | Default bug-report issue form |
 | `.github/ISSUE_TEMPLATE/feature_request.yml` | Default feature-request issue form |
 | `.github/ISSUE_TEMPLATE/config.yml` | Default issue-template chooser configuration |
 | `.github/workflows/contributor-rights-coverage.yml` | Reusable contributor-rights coverage check used by covered repositories |
 | `.github/workflows/contributor-rights-coverage-caller.yml` | Caller workflow invoking the reusable contributor-rights coverage check for pull requests opened against `macro-evidence/.github` |
-| `LICENSING.md` | File-type licensing map for community content and executable automation |
 
 This repository must remain public for GitHub to apply the supported defaults organization-wide.
 
