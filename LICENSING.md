@@ -10,7 +10,7 @@ This includes the profile README, contribution/security guidance, pull-request a
 
 ## Executable automation
 
-First-party executable GitHub Actions workflows and helper software in `.github/workflows/` are licensed under **Apache License 2.0**, whose text is provided in [`LICENSES/Apache-2.0.txt`](LICENSES/Apache-2.0.txt), unless a file-specific notice says otherwise.
+First-party executable GitHub Actions workflows and helper software in `.github/workflows/` are licensed under **Apache License 2.0**, whose text is provided in [`LICENSE-CODE`](LICENSE-CODE), unless a file-specific notice says otherwise.
 
 This licensing map does not expose or license private contributor-agreement records, secrets, signatures, addresses, or other private legal-administration material because those records are not stored in this repository.
 
