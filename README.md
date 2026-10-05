@@ -48,3 +48,4 @@ The repository configuration uses the standard `markdownlint` rule set with line
 Community/profile content uses the repository's [Creative Commons Attribution-ShareAlike 4.0 International](LICENSE) (CC BY-SA 4.0) default. Executable first-party automation in `.github/workflows/` is licensed under Apache License 2.0. See [`LICENSING.md`](LICENSING.md) for the explicit boundary.
 
 Repository licensing does not itself grant rights to use Macro Evidence's names, marks, visual identity, or official status. See the separate [Trademarks Policy](https://github.com/macro-evidence/governance/blob/main/TRADEMARKS.md).
+
