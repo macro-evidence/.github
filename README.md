@@ -38,7 +38,7 @@ Repository-specific setup, development, and usage documentation belongs in each 
 With Node.js 22 or later available, verify maintained Markdown with:
 
 ```text
-npx --yes markdownlint-cli@0.49.1 "**/*.md" --ignore-path .gitignore
+npx --yes markdownlint-cli@0.49.1 "**/*.md"
 ```
 
 The repository configuration uses the standard `markdownlint` rule set with line-length enforcement (`MD013`) disabled.
